@@ -1,0 +1,15 @@
+- hosts: test
+  become: true
+  tasks:
+    - name: tables
+      command: nft delete table ip marc
+      tags: table
+
+    - name: chains
+      command: nft flush chain pol cachero
+      command: nft delete chain ip pol cachero
+      tags: chain
+
+    - name: rules
+      command: nft delete rule test calvochain tcp dport 80 accept
+      tags: rule

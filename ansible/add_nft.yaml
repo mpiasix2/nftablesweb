@@ -1,0 +1,14 @@
+- hosts: test
+  become: true
+  tasks:
+    - name: tables
+      command: nft create table ip pol
+      tags: table
+
+    - name: chains
+      command: nft add chain ip pol montes { type route hook prerouting priority 3 ; policy drop ; }
+      tags: chain
+
+    - name: rules
+      command: nft add rule carles carleschain tcp dport 443 drop
+      tags: rule

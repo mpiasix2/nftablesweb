@@ -1,0 +1,183 @@
+{% extends 'marcbase.html' %}
+{% block title %}Crear Cadenas nftables{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <!-- Automatic Slideshow Images -->
+    <div class="mySlides w3-display-container w3-center">
+        <img src="https://csolutionsit.com/wp-content/uploads/2022/02/bigstock-Concept-Of-Cyber-Security-Inf-434929940-scaled-1.jpg"
+            style="width:100%; height:200px" alt="Error al cargar la imagen">
+        <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+            <h3>MPI-SECURITY</h3>
+            <p><b>Pruebas 1</b></p>
+        </div>
+    </div>
+    <div class="mySlides w3-display-container w3-center">
+        <img src="https://icorp.com.mx/wp-content/uploads/2015/05/%C2%BFCuales-son-los-3-pilares-de-la-seguridad-informatica-scaled.webp"
+            style="width:100%; height:200px" alt="Error al cargar la imagen">
+        <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+            <h3>MPI-SECURITY</h3>
+            <p><b>Pruebas 2</b></p>
+        </div>
+    </div>
+    <div class="mySlides w3-display-container w3-center">
+        <img src="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/07/origen-nombres-informatica-nunca-hubieras-imaginado_2.jpg"
+            style="width:100%; height:200px" alt="Error al cargar la imagen">
+        <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+            <h3>MPI-SECURITY</h3>
+            <p><b>Pruebas 3</b></p>
+        </div>
+    </div>
+    <h1 class="text-center mb-4" style="color: #fff;">Modificar Cadenas</h1>
+
+    <form method="post" action="/modificarcadena">
+        <div class="formulario">
+            <label for="alias">Alias:</label>
+            <input type="text" id="alias" name="alias">
+            <br><br>
+            <label for="family">Family:</label>
+            <select name="family" id="family">
+                <option value="ip">Ip</option>
+                <option value="ip6">Ip6</option>
+                <option value="inet">Inet</option>
+                <option value="arp">Arp</option>
+                <option value="bridge">Bridge</option>
+            </select><br><br>
+        </div>
+
+        <div class="formulario">
+            <label for="table_name">Table Name:</label>
+            <input type="text" name="table_name" id="table_name"><br><br>
+
+            <label for="chain_name">Chain Name:</label>
+            <input type="text" name="chain_name" id="chain_name">
+        </div>
+
+        <br><br>
+
+        <div class="formulario">
+
+            <label for="nw_chain_name">New Chain Name:</label>
+            <input type="text" name="nw_chain_name" id="nw_chain_name">
+
+            <label for="chain_type">Chain Type:</label>
+            <select name="chain_type" id="chain_type">
+                <option value="filter">Filter</option>
+                <option value="route">Route</option>
+                <option value="nat">Nat</option>
+            </select>
+            
+            <br><br>
+
+            <label for="chain_hook">Chain Hook:</label>
+            <select name="chain_hook" id="chain_hook">
+                <option value="ingress">Ingress</option>
+                <option value="prerouting">Prerouting</option>
+                <option value="input">Input</option>
+                <option value="forward">Forward</option>
+                <option value="output">Output</option>
+                <option value="postrouting">Postrouting</option>
+            </select>
+        </div>
+
+        <div class="formulario">
+            <label for="chain_priority">Chain Priority:</label>
+            <select name="chain_priority" id="chain_priority">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select><br><br>
+
+            <label for="chain_policy">Chain Policy:</label>
+            <select name="chain_policy" id="chain_policy">
+                <option value="accept">Accept</option>
+                <option value="drop">Drop</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+    
+    
+
+    {% if resultado %}
+        <p>{{ resultado }}</p>
+    {% endif %}
+</div>
+
+<style>
+    body {
+        background-color: #121212;
+    }
+  
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #8d8d8d;
+        padding: 30px;
+        border-radius: 8px;
+    }
+  
+    h1 {
+        font-size: 32px;
+        font-weight: bold;
+    }
+  
+    .form-group {
+        margin-bottom: 20px;
+    }
+  
+    label {
+        display: block;
+        font-weight: bold;
+    }
+  
+    .input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #fff;
+        background-color: #1e1e1e;
+    }
+  
+    .input[type="text"]::placeholder {
+        color: #bbb;
+    }
+  
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+  
+    .btn:hover {
+        background-color: #0056b3;
+    }
+  
+    p {
+        margin-top: 20px;
+    }
+
+    .formulario {
+    display: inline-block;
+    margin-right: 10px;
+    }
+
+  </style>
+
+{% endblock %}

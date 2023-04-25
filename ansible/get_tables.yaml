@@ -1,0 +1,13 @@
+- hosts: test
+  become: true
+  tasks:
+    - name: Get nftables tables
+      command: nft list tables
+      register: tables_output
+      #become_user: root
+      #become_method: sudo
+      #become_pass: 1234
+
+    - name: Tables
+      debug:
+        var: tables_output.stdout_lines

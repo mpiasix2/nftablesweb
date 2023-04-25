@@ -1,0 +1,7 @@
+all:
+  vars:
+    ansible_become_user: root
+    ansible_become_password: 1234
+  hosts:
+    test:
+      ansible_host: cliente@192.168.127.185

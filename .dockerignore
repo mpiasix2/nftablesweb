@@ -1,0 +1,11 @@
+/__pycache__
+/.venv
+/doc
+.flaskenv
+.gitignore
+app.yaml
+azure.sh
+DEV.md
+Dockerfile
+README.md
+requirements-dev.txt
