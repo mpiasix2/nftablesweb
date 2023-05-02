@@ -5,8 +5,8 @@
 
 {% block content %}
 
-<div class="containerhost">
-    <h1>Añadir Hosts</h1>
+<div class="container mt-5">
+    <h1 class="text-center mb-4" style="color: #fff;">Añadir Hosts</h1>
     <form method="POST" action="{{ url_for('anadir') }}">
         <label for="cip">Introduce una dirección IP:</label>
         <input type="text" id="cip" name="cip"><br><br>
@@ -19,7 +19,7 @@
         <input type="submit" value="Enviar">
     </form>
     <hr>
-    <h2>Información del host:</h2>
+    <h2 class="mt-4" s.tyle="color: #fff;">Información del host:</h2>
     {% if resultado %}
     <p>{{ resultado }}</p>
     {% endif %}

@@ -1,0 +1,91 @@
+{% extends 'marcbase.html' %}
+{% block title %}Eliminar Cadenas nftables{% endblock %}
+{% block content %}
+
+<div class="containerclas1">
+
+    <h1>Eliminar Tablas</h1>
+
+    <form method="post" action="/eliminartabla">
+        <label for="alias">Alias:</label>
+        <input type="text" id="alias" name="alias"><br><br>
+        <label for="table_name">Nombre de la tabla que desea eliminar:</label>
+        <input type="text" id="table_name" name="table_name"><br><br>
+        <input type="submit" value="Eliminar">
+    </form>
+
+    {% if resultado %}
+    <p>{{ resultado }}</p>
+    {% endif %}
+
+</div>
+
+<div class="containerclas2">
+
+    <h1>Eliminar Cadenas</h1>
+
+    <form method="post" action="/eliminarcadena">
+        <label for="alias">Alias:</label>
+        <input type="text" id="alias" name="alias"><br><br>
+        <label for="family">Family:</label>
+        <select name="family" id="family">
+            <option value="ip">Ip</option>
+            <option value="ip6">Ip6</option>
+            <option value="inet">Inet</option>
+            <option value="arp">Arp</option>
+            <option value="bridge">Bridge</option>
+        </select><br><br>
+        <label for="table_name">Nombre de la tabla:</label>
+        <input type="text" id="table_name" name="table_name"><br><br>
+        <label for="chain_name">Nombre de la cadena que desea eliminar:</label>
+        <input type="text" id="chain_name" name="chain_name"><br><br>
+        <input type="submit" value="Eliminar">
+    </form>
+
+    {% if resultado %}
+    <p>{{ resultado }}</p>
+    {% endif %}
+</div>
+
+
+
+
+
+<div class="containerclas3">
+
+    <h1>Eliminar Reglas</h1>
+    <form method="post" action="/eliminarreglas">
+        <label for="alias">Alias:</label>
+        <input type="text" id="alias" name="alias"><br><br>
+        <label for="family">Family:</label>
+        <select name="family" id="family">
+            <option value="ip">Ip</option>
+            <option value="ip6">Ip6</option>
+            <option value="inet">Inet</option>
+            <option value="arp">Arp</option>
+            <option value="bridge">Bridge</option>
+        </select><br><br>
+        <label for="table_name">Nombre de la tabla:</label>
+        <input type="text" id="table_name" name="table_name"><br><br>
+        <label for="chain_name">Nombre de la cadena:</label>
+        <input type="text" id="chain_name" name="chain_name"><br><br>
+        <label for="rule_name">Nombre de la regla que desea eliminar:</label>
+        <input type="text" id="rule_name" name="rule_name"><br><br>
+        <input type="submit" value="Eliminar">
+    </form>
+
+    {% if resultado %}
+    <p>{{ resultado }}</p>
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

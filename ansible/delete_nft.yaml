@@ -2,12 +2,12 @@
   become: true
   tasks:
     - name: tables
-      command: nft delete table ip marc
+      command: nft delete table inet ismac
       tags: table
 
     - name: chains
-      command: nft flush chain pol cachero
-      command: nft delete chain ip pol cachero
+      command: nft flush chain prima isma
+      command: nft delete chain ip prima isma
       tags: chain
 
     - name: rules

@@ -8,7 +8,29 @@ import paramiko, os
 from pathlib import Path
 import subprocess
 
+def ssh(alias, table_name, chain_name):
+    
+    this_dir:       Path = Path(__file__).parent
+    inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
+    add_tables_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
 
+    result = None
+
+    with open('ansible/add_nft.yaml', 'r') as f:
+        playbook_lines = f.readlines()
+
+    playbook_lines[0] = f'- hosts: {alias}\n'
+    playbook_lines[16] = f'      command: nft add rule {table_name} {chain_name} tcp dport 22 accept\n'
+    
+    with open('ansible/add_nft.yaml', 'w') as f:
+        f.writelines(playbook_lines)
+
+    result = ansible_runner.run(
+            playbook=str(add_tables_yaml),
+            inventory=str(inventory_yaml),
+            quiet=False,
+            tags='ssh'
+        )
 
 def edit_playbook(alias):
     with open('ansible/add_tables.yaml', 'r') as f:

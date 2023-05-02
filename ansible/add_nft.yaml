@@ -2,13 +2,22 @@
   become: true
   tasks:
     - name: tables
-      command: nft create table ip pol
+      command: nft create table ip calvoo
       tags: table
 
     - name: chains
-      command: nft add chain ip pol montes { type route hook prerouting priority 3 ; policy drop ; }
+      command: nft add chain ip prima isma { type filter hook input priority 0 ; policy accept ; }
       tags: chain
 
     - name: rules
-      command: nft add rule carles carleschain tcp dport 443 drop
+      command: nft add rule None None None
       tags: rule
+
+    - name: shh
+      command: nft add rule ip prima pol input accept
+      tags: ssh
+
+    - name: apply
+      command: sudo sh -c 'nft list ruleset > /etc/nftables.conf'
+      #command: sudo systemctl restart nftables
+      tags: apply

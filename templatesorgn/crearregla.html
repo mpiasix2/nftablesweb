@@ -30,16 +30,31 @@
     <h1 class="text-center mb-4" style="color: #fff;">Crear Reglas</h1>
     
     <form method="post" action="/crearregla">
-      <label for="alias">Alias:</label>
-      <input type="text" id="alias" name="alias"><br><br>
-      <label for="table_name">Nombre de la tabla:</label>
-      <input type="text" id="table_name" name="table_name"><br><br>
-      <label for="chain_name">Nombre de la cadena:</label>
-      <input type="text" id="chain_name" name="chain_name"><br><br>
-      <label for="rule_expresion">Regla a añadir:</label>
-      <input type="text" id="rule_expresion" name="rule_expresion"><br><br>
-      <input type="submit" value="Crear">
-    </form>
+        <label for="alias">Alias:</label>
+        <input type="text" id="alias" name="alias"><br><br>
+        <label for="table_name">Nombre de la tabla:</label>
+        <input type="text" id="table_name" name="table_name"><br><br>
+        <label for="chain_name">Nombre de la cadena:</label>
+        <input type="text" id="chain_name" name="chain_name"><br><br>
+        <label>Regla a añadir:</label>
+        <input type="submit" name="task_name" value="Permitir Entrada">
+        <input type="submit" name="task_name" value="Permitir Salida">
+        <input type="submit" name="task_name" value="Bloquear Entrada">
+        <input type="submit" name="task_name" value="Bloquear Salida">
+        <input type="submit" name="task_name" value="Permitir Entrada SSH">
+        <input type="submit" name="task_name" value="Permitir Salida SSH">
+        <input type="submit" name="task_name" value="Bloquear Entrada SSH">
+        <input type="submit" name="task_name" value="Bloquear Salida SSH">
+        <input type="submit" name="task_name" value="Permitir Entrada HTTP">
+        <input type="submit" name="task_name" value="Permitir Salida HTTP">
+        <input type="submit" name="task_name" value="Bloquear Entrada HTTP">
+        <input type="submit" name="task_name" value="Bloquear Salida HTTP">
+        <input type="submit" name="task_name" value="Permitir Entrada ICMP">
+        <input type="submit" name="task_name" value="Permitir Salida ICMP">
+        <input type="submit" name="task_name" value="Bloquear Entrada ICMP">
+        <input type="submit" name="task_name" value="Bloquear Salida ICMP">
+     </form>
+    
     {% if resultado %}
 		  <p>{{ resultado }}</p>
     {% endif %}

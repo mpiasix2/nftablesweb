@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "9150314f-eb2a-4987-8dbf-6e7541f5fe89", "counter": 1, "stdout": "\u001b[0;31mERROR! the playbook:  could not be found\u001b[0m", "start_line": 0, "end_line": 1, "runner_ident": "add_host", "created": "2023-04-25T17:27:22.909762"}

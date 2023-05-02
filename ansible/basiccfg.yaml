@@ -1,0 +1,6 @@
+- hosts: testpol
+  become: true
+  tasks:
+    - name: rules
+      command: nft add rule tabla cadena tcp dport 22 accept
+      tags: rule

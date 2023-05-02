@@ -1,0 +1,146 @@
+{% extends 'marcbase.html' %}
+{% block title %}Crear Cadenas nftables{% endblock %}
+{% block content %}
+<div class="containerclas2">
+
+    <h1>Modificar Cadenas</h1>
+
+    <form method="post" action="/modificarcadena">
+        <div class="formulario">
+            <label for="alias">Alias:</label>
+            <input type="text" id="alias" name="alias">
+            <br><br>
+            <label for="family">Family:</label>
+            <select name="family" id="family">
+                <option value="ip">Ip</option>
+                <option value="ip6">Ip6</option>
+                <option value="inet">Inet</option>
+                <option value="arp">Arp</option>
+                <option value="bridge">Bridge</option>
+            </select><br><br>
+        </div>
+
+        <div class="formulario">
+            <label for="table_name">Table Name:</label>
+            <input type="text" name="table_name" id="table_name"><br><br>
+
+            <label for="chain_name">Chain Name:</label>
+            <input type="text" name="chain_name" id="chain_name">
+        </div>
+
+        <br><br>
+
+        <div class="formulario">
+
+            <label for="nw_chain_name">New Chain Name:</label>
+            <input type="text" name="nw_chain_name" id="nw_chain_name">
+
+            <label for="chain_type">Chain Type:</label>
+            <select name="chain_type" id="chain_type">
+                <option value="filter">Filter</option>
+                <option value="route">Route</option>
+                <option value="nat">Nat</option>
+            </select>
+
+            <br><br>
+
+            <label for="chain_hook">Chain Hook:</label>
+            <select name="chain_hook" id="chain_hook">
+                <option value="ingress">Ingress</option>
+                <option value="prerouting">Prerouting</option>
+                <option value="input">Input</option>
+                <option value="forward">Forward</option>
+                <option value="output">Output</option>
+                <option value="postrouting">Postrouting</option>
+            </select>
+        </div>
+
+        <div class="formulario">
+            <label for="chain_priority">Chain Priority:</label>
+            <select name="chain_priority" id="chain_priority">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select><br><br>
+
+            <label for="chain_policy">Chain Policy:</label>
+            <select name="chain_policy" id="chain_policy">
+                <option value="accept">Accept</option>
+                <option value="drop">Drop</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+    {% if resultadoc %}
+    <p>{{ resultadoc }}</p>
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+<div class="containerclas1">
+
+
+<h1>Modificar Tablas</h1>
+
+<form method="post" action="/modificartabla">
+
+    <label for="alias">Alias:</label>
+    <input type="text" id="alias" name="alias"><br><br>
+
+    <label for="family">Family:</label>
+    <select name="family" id="family">
+        <option value="ip">Ip</option>
+        <option value="ip6">Ip6</option>
+        <option value="inet">Inet</option>
+        <option value="arp">Arp</option>
+        <option value="bridge">Bridge</option>
+    </select><br><br>
+
+    <label for="table_name">Nombre de la tabla que quieres modificar:</label>
+    <input type="text" id="table_name" name="table_name"><br><br>
+
+    <label for="nw_family">New Family:</label>
+    <select name="nw_family" id="nw_family">
+        <option value="ip">Ip</option>
+        <option value="ip6">Ip6</option>
+        <option value="inet">Inet</option>
+        <option value="arp">Arp</option>
+        <option value="bridge">Bridge</option>
+    </select><br><br>
+
+    <label for="nw_table_name">Nuevo nombre de la tabla que quieres modificar:</label>
+    <input type="text" id="nw_table_name" name="nw_table_name"><br><br>
+
+    <input type="submit" value="Modificar">
+</form>
+
+{% if resultadot %}
+<p>{{ resultadot }}</p>
+{% endif %}
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
