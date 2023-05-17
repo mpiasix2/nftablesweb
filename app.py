@@ -778,9 +778,8 @@ def add_rule():
         this_dir:       Path = Path(__file__).parent
         inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
         add_rule_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
-    
-        task_name = request.form["task_name"]
 
+        edit_playbook_add(alias)
         
         with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'r') as f:
             playbook_lines = f.readlines()
@@ -799,6 +798,8 @@ def add_rule():
         )
             
         applynft(alias)
+        
+        resultado = f'cadena: {chain_name} añadida correctamente al alias: {alias}'
 
     return render_template('crear.html', resultador=resultado)
 
