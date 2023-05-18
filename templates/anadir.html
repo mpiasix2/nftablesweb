@@ -1,0 +1,28 @@
+{% extends 'marcbase.html' %}
+{% block title %}Agregar Hosts{% endblock %}
+
+
+
+{% block content %}
+
+<div class="containerhost">
+    <h1>Añadir Hosts</h1>
+    <form method="POST" action="{{ url_for('anadir') }}">
+        <label for="cip">Introduce una dirección IP:</label>
+        <input type="text" id="cip" name="cip"><br><br>
+        <label for="alias">Introduce un alias para esa ip:</label>
+        <input type="text" id="alias" name="alias"><br><br>
+        <label for="cusr">Introduce el usuario:</label>
+        <input type="text" id="cusr" name="cusr"><br><br>
+        <label for="cpsw">Introduce su contraseña:</label>
+        <input type="text" id="cpsw" name="cpsw">
+        <input type="submit" value="Enviar">
+    </form>
+    <hr>
+    <h2>Información del host:</h2>
+    {% if resultado %}
+    <p>{{ resultado }}</p>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> MPI-SECURITY </title>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">HOME</a></li>
+				<li><a href="/anadir">ADD HOSTS</a></li>
+				<li><a href="/prerules">PRE RULES</a></li>
+				<li><a href="/creartabla">CREATE</a></li>
+				<li><a href="/modificartabla">MODIFY</a></li>
+				<li><a href="/eliminartabla">DELETE</a></li>
+				<li><a href="/logout">LOGOUT</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+
+		<div class="">
+			<div class="content">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+
+	</main>
+
+	<div class="mySlides">
+		<img src="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/07/origen-nombres-informatica-nunca-hubieras-imaginado_2.jpg"
+			style="width:100%; height:100%" alt="Error al cargar la imagen">
+	</div>
+	<div class="mySlides">
+		<img src="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/07/origen-nombres-informatica-nunca-hubieras-imaginado_2.jpg"
+			style="width:100%; height:100%" alt="Error al cargar la imagen">
+	</div>
+	<div class="mySlides">
+		<img src="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/07/origen-nombres-informatica-nunca-hubieras-imaginado_2.jpg"
+			style="width:100%; height:100%" alt="Error al cargar la imagen">
+
+	</div>
+
+
+
+	<!--<footer>
+		<p>© MPI-SECURITY, Todos los derechos reservados.</p>
+	</footer>!-->
+
+</body>
+
+<script>
+	// Automatic Slideshow - change image every 4 seconds
+	var myIndex = 0;
+	carousel();
+
+	function carousel() {
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+		myIndex++;
+		if (myIndex > x.length) { myIndex = 1 }
+		x[myIndex - 1].style.display = "block";
+		setTimeout(carousel, 4000);
+	}
+</script>
+
+</html>

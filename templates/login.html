@@ -1,0 +1,22 @@
+{% extends 'baselogout.html' %}
+{% block title %}INICIA SESSION{% endblock %}
+
+
+
+{% block content %}
+
+<div class="containersesion">
+  
+  <h1>INICIO DE SESION</h1>
+  <form method="post" action="{{ url_for('login') }}">
+    <br></br>
+    <input type="text" name="username" placeholder="Nombre">
+    <input type="password" name="password" placeholder="Contraseña">
+    <input type="submit" value="Iniciar sesión">
+  </form>
+  {% if error %}
+  <p>{{ error }}</p>
+  {% endif %}
+</div>
+
+{% endblock %}
