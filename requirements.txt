@@ -1,6 +1,8 @@
+ansible-runner==2.3.2
+jsonpath==0.82
+jsonpath_ng==1.5.3
+paramiko==3.1.0
 ansible==7.4.0
 Flask==2.2.2
 gunicorn==20.1.0
-iputils-ping
 ssh-import-id==5.11
-sshpass
