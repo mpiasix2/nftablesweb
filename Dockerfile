@@ -7,6 +7,10 @@ RUN apt-get install nano -y &&
 RUN apt-get install sshpass -y &&
 RUN ansible-galaxy collection install ansible.posix
 
+RUN mkdir -p /root/.ssh && chmod 0700 /root/.ssh
+RUN test -f /root/.ssh/id_rsa || (ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa)
+RUN chmod 0600 /root/.ssh/id_rsa
+RUN chown root:root /root/.ssh/id_rsa
 
 WORKDIR /app
 
