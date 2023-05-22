@@ -56,7 +56,7 @@ main {
   box-shadow: 0 0 20px #000;
   margin: 0 auto;
   max-width: 45%;
-  padding: 30px;
+  padding: 3%;
   text-align: justify;
   position: relative;
   z-index: 1;
@@ -69,21 +69,11 @@ main {
   box-shadow: 0 0 20px #000;
   margin: 0 auto;
   max-width: 45%;
-  padding: 30px;
+  padding: 3%;
   text-align: left;
   position: relative;
   z-index: 1;
 }
-
-
-
-
-
-
-
-
-
-
 
 .containerhost h1 {
   font-size: 30px;
@@ -102,6 +92,16 @@ main {
 
 .containerhost select,
 input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid white;
+  margin-bottom: 20px;
+}
+
+.containerhost select,
+input[type="password"] {
   padding: 10px;
   font-size: 16px;
   width: 100%;
@@ -134,7 +134,73 @@ input[type="text"] {
 
 
 
+.containersesion {
 
+  background-color: #404040;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #000;
+  margin: 0 auto;
+  max-width: 45%;
+  padding: 5%;
+  text-align: left;
+  position: relative;
+  margin-top: 5%;
+  z-index: 1;
+}
+
+
+.containersesion h1 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+
+.containersesion label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.containersesion select,
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid white;
+  margin-bottom: 20px;
+}
+
+.containersesion input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 4%;
+  margin-left: 40%;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.containersesion input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+.containersesion p {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: -1%;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: red;
+}
 
 
 
@@ -505,10 +571,10 @@ input[type="text"] {
   box-shadow: 0 0 20px #000;
   margin: 10 auto;
   width: 20%;
-  padding: 30px;
+  padding: 3%;
   text-align: left;
   position: absolute;
-  margin-left: 10%;
+  margin-left: 7%;
   margin-top: -1%;
   z-index: 1;
 
@@ -575,7 +641,7 @@ input[type="text"] {
   box-shadow: 0 0 20px #000;
   margin: 30 auto;
   width: 20%;
-  padding: 30px;
+  padding: 3%;
   text-align: left;
   position: absolute;
   margin-left: 35%;
@@ -641,10 +707,10 @@ input[type="text"] {
   box-shadow: 0 0 20px #000;
   margin: 60 auto;
   width: 20%;
-  padding: 30px;
+  padding: 3%;
   text-align: left;
   position: absolute;
-  margin-left: 60%;
+  margin-left: 63%;
   margin-top: -1%;
   z-index: 1;
 
