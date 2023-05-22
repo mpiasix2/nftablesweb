@@ -1,117 +1,11 @@
-from flask import Flask, render_template, request
 import ansible_runner
 import json
 from jsonpath_ng import jsonpath, parse
 from getpass import getpass
 import paramiko, os
-from flask import Flask, flash, render_template, request, redirect, url_for, session
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, validators
-from flask_login import LoginManager, login_required, current_user
-import csv
-from functools import wraps
 from pathlib import Path
 
 app = Flask(__name__)
-app.secret_key = '123456'
-
-
-def require_login(f):
-
-    @wraps(f)
-
-    def decorated_function(*args, **kwargs):
-
-        if 'username' not in session:
-
-            return render_template('login.html')
-
-        return f(*args, **kwargs)
-
-    return decorated_function
-
-
-
-
-
-# definir la ruta principal de la aplicación
-
-@app.route('/')
-
-def index():
-
-    if 'username' in session:
-
-        return render_template('indice.html')
-
-
-
-    else:
-
-        return render_template('login.html')
-
-
-
-# definir la ruta a la que se enviará el formulario de inicio de sesión
-
-@app.route('/login', methods=['POST'])
-
-def login():
-
-    # obtener los datos del formulario
-
-    username = request.form['username']
-
-    password = request.form['password']
-
-
-
-    # abrir el archivo CSV con los usuarios y contraseñas
-
-    with open('./templates/users.csv') as archivo:
-
-        lector_csv = csv.reader(archivo)
-
-        for fila in lector_csv:
-
-            # comprobar si el usuario y la contraseña coinciden con alguna fila del CSV
-
-            if fila[0] == username and fila[1] == password:
-
-                # si coinciden, redirigir al usuario a la página privada
-
-                session['username'] = username
-
-                return render_template('indice.html')
-
-    
-
-    # si el usuario o la contraseña no coinciden con ninguna fila del CSV, mostrar un mensaje de error
-
-    return render_template('login.html', error="Usuario o contraseña incorrecto")
-
-
-
-@app.route('/logout')
-
-def logout():
-
-    session.pop('username', None)
-
-    return render_template('login.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def applynft(alias):
 
@@ -672,9 +566,12 @@ def ssh_copy_id(cusr, cpsw, cip):
     command = f'sshpass -p "{cpsw}" ssh-copy-id -o StrictHostKeyChecking=no {cusr}@{cip}'
     os.system(command)
 
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('indice.html')
+
 @app.route('/anadir', methods=['GET', 'POST'])
 def anadir():
-@require_login
     resultado = None
     if request.method == 'POST':
         cip = request.form.get('cip')
@@ -693,7 +590,6 @@ def anadir():
 
 @app.route('/prerules', methods=['GET', 'POST'])
 def prerules():
-@require_login
     result = None
     resultado = None
 
@@ -782,7 +678,6 @@ def prerules():
 
 @app.route('/creartabla', methods=['GET', 'POST'])
 def add_tables():
-@require_login
     resultado = None
     result = None
 
@@ -821,7 +716,6 @@ def add_tables():
 
 @app.route('/crearcadena', methods=['GET', 'POST'])
 def add_chains():
-@require_login
     resultado = None
     result = None
 
@@ -867,7 +761,6 @@ def add_chains():
 
 @app.route('/crearregla', methods=['GET', 'POST'])
 def add_rule():
-@require_login
     resultado = None
     result = None
 
@@ -922,7 +815,6 @@ def add_rule():
 
 @app.route('/modificartabla', methods=['GET', 'POST'])
 def mod_tables():
-@require_login
     resultado = None
     result = None
     result1 = None
@@ -984,7 +876,6 @@ def mod_tables():
 
 @app.route('/modificarcadena', methods=['GET', 'POST'])
 def mod_chains():
-@require_login
     resultado = None
     result = None
     result1 = None
@@ -1056,7 +947,6 @@ def mod_chains():
 
 @app.route('/eliminartabla', methods=['GET', 'POST'])
 def delete_tables():
-@require_login
        
     resultado = None
     result = None
@@ -1093,7 +983,6 @@ def delete_tables():
 
 @app.route('/eliminarcadena', methods=['GET', 'POST'])
 def delete_chains():
-@require_login
 
     resultado = None
     result = None
