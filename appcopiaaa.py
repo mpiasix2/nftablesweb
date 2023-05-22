@@ -32,6 +32,7 @@ def applynft(alias):
             tags='apply'
         )
 
+
 def entraccept(alias, table_name, chain_name):
     
     this_dir:       Path = Path(__file__).parent
@@ -45,7 +46,7 @@ def entraccept(alias, table_name, chain_name):
         playbook_lines = f.readlines()
 
     playbook_lines[0] = f'- hosts: {alias}\n'
-    playbook_lines[16] = f'      command: nft add rule {table_name} {chain_name} input accept\n'
+    playbook_lines[16] = f'      command: nft add rule ip {table_name} {chain_name} accept\n'
     
     with open('ansible/add_nft.yaml', 'w') as f:
         f.writelines(playbook_lines)
@@ -57,6 +58,7 @@ def entraccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico entrante correctamente'
     
@@ -75,7 +77,7 @@ def saliaccept(alias, table_name, chain_name):
         playbook_lines = f.readlines()
 
     playbook_lines[0] = f'- hosts: {alias}\n'
-    playbook_lines[16] = f'      command: nft add rule {table_name} {chain_name} output accept\n'
+    playbook_lines[16] = f'      command: nft add rule ip {table_name} {chain_name} accept\n'
     
     with open('ansible/add_nft.yaml', 'w') as f:
         f.writelines(playbook_lines)
@@ -87,6 +89,7 @@ def saliaccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico saliente correctamente'
     
@@ -105,7 +108,7 @@ def entrdrop(alias, table_name, chain_name):
         playbook_lines = f.readlines()
 
     playbook_lines[0] = f'- hosts: {alias}\n'
-    playbook_lines[16] = f'      command: nft add rule {table_name} {chain_name} input drop\n'
+    playbook_lines[16] = f'      command: nft add rule ip {table_name} {chain_name} drop\n'
     
     with open('ansible/add_nft.yaml', 'w') as f:
         f.writelines(playbook_lines)
@@ -117,6 +120,7 @@ def entrdrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha bloqueado el trafico entrante correctamente'
     
@@ -135,7 +139,7 @@ def salidrop(alias, table_name, chain_name):
         playbook_lines = f.readlines()
 
     playbook_lines[0] = f'- hosts: {alias}\n'
-    playbook_lines[16] = f'      command: nft add rule {table_name} {chain_name} output drop\n'
+    playbook_lines[16] = f'      command: nft add rule ip {table_name} {chain_name} drop\n'
     
     with open('ansible/add_nft.yaml', 'w') as f:
         f.writelines(playbook_lines)
@@ -147,6 +151,7 @@ def salidrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha bloqueado el trafico saliente correctamente'
     
@@ -177,6 +182,7 @@ def entrsshaccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico ssh por el puerto 22 correctamente'
     
@@ -207,6 +213,7 @@ def salisshaccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico ssh por el puerto 22 correctamente'
     
@@ -237,6 +244,7 @@ def entrsshdrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha denegado el trafico ssh por el puerto 22 correctamente'
     
@@ -267,6 +275,7 @@ def salisshdrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha denegado el trafico ssh por el puerto 22 correctamente'
     
@@ -297,6 +306,7 @@ def entrhttpaccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico http por el puerto 22 correctamente'
     
@@ -327,6 +337,7 @@ def salihttpaccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico http por el puerto 22 correctamente'
     
@@ -357,6 +368,7 @@ def entrhttpdrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha denegado el trafico http por el puerto 22 correctamente'
     
@@ -387,6 +399,7 @@ def salihttpdrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha denegado el trafico http por el puerto 22 correctamente'
     
@@ -417,6 +430,7 @@ def entricmpaccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico http por el puerto 22 correctamente'
     
@@ -447,6 +461,7 @@ def saliicmpaccept(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico http por el puerto 22 correctamente'
     
@@ -477,6 +492,7 @@ def entricmpdrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico http por el puerto 22 correctamente'
     
@@ -507,6 +523,7 @@ def saliicmpdrop(alias, table_name, chain_name):
             tags='ssh'
         )
 
+    applynft(alias)
 
     resultado = f'Se ha habilitado el trafico http por el puerto 22 correctamente'
     
@@ -573,110 +590,24 @@ def anadir():
             
     return render_template('anadir.html', resultado=resultado)
 
-@app.route('/creartabla', methods=['GET', 'POST'])
-def add_tables():
-    resultado = None
+@app.route('/prerules', methods=['GET', 'POST'])
+def prerules():
     result = None
-
-    this_dir:       Path = Path(__file__).parent
-    inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
-    add_tables_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
-    
-    if request.method == 'POST':
-
-        family = request.form.get('family')
-        alias = request.form.get('alias')
-        table_name = request.form.get('table_name')  
-        
-        edit_playbook_add(alias)
-
-        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'r') as f:
-            playbook_lines = f.readlines()
-
-        playbook_lines[4] = f'      command: nft create table {family} {table_name}\n'
-
-        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'w') as f:
-            f.writelines(playbook_lines)
-
-        result = ansible_runner.run(
-            playbook=str(add_tables_yaml),
-            inventory=str(inventory_yaml),
-            quiet=False,
-            tags='table'
-        )
-
-        applynft(alias)
-
-        resultado = f'Tabla: {table_name} añadida correctamente al alias: {alias}' 
-
-    return render_template('creartabla.html', resultado=resultado)
-
-@app.route('/crearcadena', methods=['GET', 'POST'])
-def add_chains():
     resultado = None
-    result = None
-
-    if request.method == 'POST':
-
-        alias = request.form.get('alias')
-        family = request.form.get('family')
-        table_name = request.form.get('table_name')
-        chain_name = request.form.get('chain_name')
-        chain_type = request.form.get('chain_type')
-        chain_hook = request.form.get('chain_hook')
-        chain_priority = request.form.get('chain_priority')
-        chain_policy = request.form.get('chain_policy')
-
-
-        this_dir:       Path = Path(__file__).parent
-        inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
-        add_chains_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
-
-        edit_playbook_add(alias)
-
-        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'r') as f:
-            playbook_lines = f.readlines()
-
-        playbook_lines[8] = f'      command: nft add chain { family } {table_name} {chain_name} {{ type {chain_type} hook {chain_hook} priority {chain_priority} ; policy {chain_policy} ; }}\n'
-        
-        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'w') as f:
-            f.writelines(playbook_lines)
-
-        result = ansible_runner.run(
-            playbook=str(add_chains_yaml),
-            inventory=str(inventory_yaml),
-            quiet=False,
-            tags='chain'
-        )
-
-        applynft(alias)
-
-        resultado = f'cadena: {chain_name} añadida correctamente al alias: {alias}' 
-
-
-    return render_template('crearcadena.html', resultado=resultado)
-
-@app.route('/crearregla', methods=['GET', 'POST'])
-def add_rule():
-    resultado = None
-    result = None
 
     if request.method == 'POST':
 
         # Definir los parámetros de la regla
 
-        alias = request.form.get('alias')
         table_name = request.form.get('table_name')
         chain_name = request.form.get('chain_name')
-        expresion_user = request.form.get('expresion_user')
-
+        alias = request.form.get('alias')
+        
         this_dir:       Path = Path(__file__).parent
         inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
         add_rule_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
     
         task_name = request.form["task_name"]
-
-        
 
         if task_name == "Permitir Entrada":
             resultado = entraccept(alias=alias, table_name=table_name, chain_name=chain_name)
@@ -736,7 +667,6 @@ def add_rule():
             with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'w') as f:
                 f.writelines(playbook_lines)
 
-            
             result = ansible_runner.run(
                 playbook=str(add_rule_yaml),
                 inventory=str(inventory_yaml),
@@ -746,7 +676,132 @@ def add_rule():
             
             applynft(alias)
 
-    return render_template('crearregla.html', resultado=resultado)
+    return render_template('prerules.html', resultado=resultado)
+
+@app.route('/creartabla', methods=['GET', 'POST'])
+def add_tables():
+    resultado = None
+    result = None
+
+    this_dir:       Path = Path(__file__).parent
+    inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
+    add_tables_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
+    
+    if request.method == 'POST':
+
+        family = request.form.get('family')
+        alias = request.form.get('alias')
+        table_name = request.form.get('table_name')  
+        
+        edit_playbook_add(alias)
+
+        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'r') as f:
+            playbook_lines = f.readlines()
+
+        playbook_lines[4] = f'      command: nft create table {family} {table_name}\n'
+
+        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'w') as f:
+            f.writelines(playbook_lines)
+
+        result = ansible_runner.run(
+            playbook=str(add_tables_yaml),
+            inventory=str(inventory_yaml),
+            quiet=False,
+            tags='table'
+        )
+
+        applynft(alias)
+
+        resultado = f'Tabla: {table_name} añadida correctamente al alias: {alias}' 
+
+    return render_template('crear.html', resultadot=resultado)
+
+@app.route('/crearcadena', methods=['GET', 'POST'])
+def add_chains():
+    resultado = None
+    result = None
+
+    if request.method == 'POST':
+
+        alias = request.form.get('alias')
+        family = request.form.get('family')
+        table_name = request.form.get('table_name')
+        chain_name = request.form.get('chain_name')
+        chain_type = request.form.get('chain_type')
+        chain_hook = request.form.get('chain_hook')
+        chain_priority = request.form.get('chain_priority')
+        chain_policy = request.form.get('chain_policy')
+
+
+        this_dir:       Path = Path(__file__).parent
+        inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
+        add_chains_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
+
+        edit_playbook_add(alias)
+
+        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'r') as f:
+            playbook_lines = f.readlines()
+
+        playbook_lines[8] = f'      command: nft add chain { family } {table_name} {chain_name} {{ type {chain_type} hook {chain_hook} priority {chain_priority} ; policy {chain_policy} ; }}\n'
+        
+        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'w') as f:
+            f.writelines(playbook_lines)
+
+        result = ansible_runner.run(
+            playbook=str(add_chains_yaml),
+            inventory=str(inventory_yaml),
+            quiet=False,
+            tags='chain'
+        )
+
+        applynft(alias)
+
+        resultado = f'cadena: {chain_name} añadida correctamente al alias: {alias}' 
+
+
+    return render_template('crear.html', resultadoc=resultado)
+
+@app.route('/crearregla', methods=['GET', 'POST'])
+def add_rule():
+    resultado = None
+    result = None
+
+    if request.method == 'POST':
+
+        # Definir los parámetros de la regla
+
+        alias = request.form.get('alias')
+        table_name = request.form.get('table_name')
+        chain_name = request.form.get('chain_name')
+        expresion_user = request.form.get('expresion_user')
+
+        this_dir:       Path = Path(__file__).parent
+        inventory_yaml: Path = this_dir/'ansible'/'inventory.yaml'
+        add_rule_yaml: Path = this_dir/'ansible'/'add_nft.yaml'
+
+        edit_playbook_add(alias)
+        
+        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'r') as f:
+            playbook_lines = f.readlines()
+
+        playbook_lines[12] = f'      command: nft add rule {table_name} {chain_name} {expresion_user}\n'
+
+        with open(os.path.join(this_dir, 'ansible', 'add_nft.yaml'), 'w') as f:
+            f.writelines(playbook_lines)
+
+            
+        result = ansible_runner.run(
+            playbook=str(add_rule_yaml),
+            inventory=str(inventory_yaml),
+            quiet=False,
+            tags='rule'
+        )
+            
+        applynft(alias)
+        
+        resultado = f'regla: {expresion_user} añadida correctamente al alias: {alias}'
+
+    return render_template('crear.html', resultador=resultado)
 
 #@app.route('/mostrartabla')
 #def mostrartabla():
@@ -815,9 +870,11 @@ def mod_tables():
             tags='table'
         )
 
+        applynft(alias)
+
         resultado = f'Tabla: {family} {table_name} modificada a {nw_family} {nw_table_name} correctamente al alias: {alias}' 
 
-    return render_template('modificartabla.html', resultado=resultado)
+    return render_template('modificar.html', resultadot=resultado)
 
 @app.route('/modificarcadena', methods=['GET', 'POST'])
 def mod_chains():
@@ -880,9 +937,11 @@ def mod_chains():
             tags='chain'
         )
 
+        applynft(alias)
+
         resultado = f'Tabla: {family} {table_name} {chain_name} modificada a {family} {table_name} {nw_chain_name} type {chain_type} hook {chain_hook} priority {chain_priority} ; policy {chain_policy} ; correctamente al alias: {alias}' 
 
-    return render_template('modificarcadena.html', resultado=resultado)
+    return render_template('modificar.html', resultadoc=resultado)
 
 #@app.route('/modificarregla')
 #def modificarregla():
@@ -922,7 +981,7 @@ def delete_tables():
 
         resultado = f'Tabla: {table_name} eliminada correctamente del alias: {alias}' 
 
-    return render_template('eliminartabla.html', resultado=resultado)
+    return render_template('eliminar.html', resultado=resultado)
 
 @app.route('/eliminarcadena', methods=['GET', 'POST'])
 def delete_chains():
@@ -962,7 +1021,7 @@ def delete_chains():
 
         resultado = f'Cadena: {chain_name} de la tabla {table_name} eliminada correctamente del alias: {alias}' 
 
-    return render_template('eliminarcadena.html', resultado=resultado)
+    return render_template('eliminar.html', resultado=resultado)
 
 #@app.route('/eliminarregla')
 #def eliminarregla():
